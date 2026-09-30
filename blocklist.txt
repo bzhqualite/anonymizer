@@ -1,0 +1,2 @@
+# Une adresse Solana par ligne. Les lignes commençant par # sont ignorées.
+# Alimentez ce fichier depuis une source de screening (listes OFAC SDN, sanctions UE, fournisseur KYT…).

@@ -1,0 +1,26 @@
+:root {
+  --bg: #0e0f13; --card: #171921; --text: #e8e9ee; --muted: #9296a5;
+  --accent: #9b6bff; --border: #2a2d3a; --error: #ff6b6b; --ok: #3ddc97;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.5 system-ui, sans-serif; }
+main { max-width: 720px; margin: 0 auto; padding: 32px 16px; }
+h1 { margin: 0 0 4px; } h2 { margin-top: 0; font-size: 18px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin: 20px 0; }
+.hidden { display: none; }
+.muted { color: var(--muted); } .small { font-size: 13px; }
+.error { color: var(--error); min-height: 1em; }
+label { display: block; margin: 12px 0; color: var(--muted); font-size: 13px; }
+input { width: 100%; padding: 10px 12px; margin-top: 4px; background: var(--bg); color: var(--text);
+  border: 1px solid var(--border); border-radius: 8px; font: inherit; }
+.dest { display: flex; gap: 8px; margin-bottom: 8px; } .dest input { margin: 0; }
+.row { display: flex; gap: 8px; align-items: center; } .row input { margin: 0; }
+button { padding: 10px 16px; background: var(--accent); color: #fff; border: 0; border-radius: 8px;
+  font: inherit; cursor: pointer; white-space: nowrap; }
+button.ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
+button:disabled { opacity: .5; cursor: default; }
+code { display: block; padding: 12px; margin: 8px 0; background: var(--bg); border-radius: 8px; word-break: break-all; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--border); }
+td.addr { font-family: monospace; max-width: 180px; overflow: hidden; text-overflow: ellipsis; }
+.confirmed { color: var(--ok); }

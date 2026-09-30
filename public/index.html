@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Solana Splitter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Solana Splitter</h1>
+      <p class="muted">Envoyez vos SOL, nous les redistribuons en montants aléatoires vers vos wallets.</p>
+      <p class="muted small" id="terms"></p>
+    </header>
+
+    <section id="step-create" class="card">
+      <h2>1. Wallets de destination</h2>
+      <div id="destinations"></div>
+      <button type="button" id="add-dest" class="ghost">+ Ajouter un wallet</button>
+      <label>Adresse de remboursement (optionnel)
+        <input id="refund" placeholder="Par défaut : l'adresse qui a envoyé le dépôt" />
+      </label>
+      <button id="create">Créer l'ordre</button>
+      <p class="error" id="create-error"></p>
+    </section>
+
+    <section id="step-deposit" class="card hidden">
+      <h2>2. Dépôt</h2>
+      <p>Envoyez vos SOL à cette adresse de dépôt unique :</p>
+      <code id="deposit-address"></code>
+      <button type="button" id="copy" class="ghost">Copier</button>
+      <p class="muted small" id="deposit-limits"></p>
+      <div class="row">
+        <input id="amount" type="number" step="0.01" min="0" placeholder="Montant en SOL" />
+        <button id="pay">Envoyer avec Phantom</button>
+      </div>
+      <p class="error" id="pay-error"></p>
+    </section>
+
+    <section id="step-status" class="card hidden">
+      <h2>3. Suivi</h2>
+      <p>Statut : <strong id="status"></strong></p>
+      <p class="muted small" id="order-id"></p>
+      <table>
+        <thead><tr><th>Destination</th><th>Montant</th><th>Statut</th><th>Prévu</th></tr></thead>
+        <tbody id="payouts"></tbody>
+      </table>
+    </section>
+  </main>
+  <script src="/vendor/web3.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
