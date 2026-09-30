@@ -24,3 +24,4 @@ table { width: 100%; border-collapse: collapse; font-size: 13px; }
 th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--border); }
 td.addr { font-family: monospace; max-width: 180px; overflow: hidden; text-overflow: ellipsis; }
 .confirmed { color: var(--ok); }
+a { color: var(--accent); text-decoration: none; }

@@ -13,6 +13,8 @@ const STATUS_LABELS = {
   failed: "Échec — contactez le support",
 };
 
+const PAYOUT_LABELS = { pending: "programmé", sent: "envoyé", confirmed: "confirmé", failed: "échec" };
+
 let config;
 let order;
 
@@ -91,9 +93,13 @@ function renderOrder() {
     .map((p) => {
       const link = p.signature ? `<a href="https://solscan.io/tx/${p.signature}${cluster()}" target="_blank">✓</a>` : "";
       return `<tr><td class="addr">${p.kind === "refund" ? "↩ " : ""}${p.to}</td><td>${p.amountSol} SOL</td>
-        <td class="${p.status}">${p.status} ${link}</td><td>${new Date(p.scheduledAt).toLocaleTimeString()}</td></tr>`;
+        <td class="${p.status}">${PAYOUT_LABELS[p.status] ?? p.status} ${link}</td><td>${new Date(p.scheduledAt).toLocaleTimeString()}</td></tr>`;
     })
     .join("");
+}
+
+function formatDelay(minutes) {
+  return minutes >= 1 ? `${Math.round(minutes)} min` : `${Math.round(minutes * 60)} s`;
 }
 
 function cluster() {
@@ -117,7 +123,7 @@ function showOrder() {
 async function init() {
   config = await api("/api/config");
   $("terms").textContent =
-    `Commission ${config.feePercent} % · jusqu'à ${config.maxDestinations} wallets · paiements étalés sur ${config.maxPayoutDelayMinutes} min max.`;
+    `Commission ${config.feePercent} % · jusqu'à ${config.maxDestinations} wallets · paiements étalés sur ${formatDelay(config.maxPayoutDelayMinutes)} max.`;
   addDestination();
   addDestination();
   $("add-dest").onclick = () => addDestination();

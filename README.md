@@ -60,6 +60,27 @@ npm test        # tests unitaires + scénario complet sur une blockchain simulé
 npm run typecheck
 ```
 
+### Tester sans devnet : nœud Solana local
+
+`scripts/local-validator.ts` expose un petit serveur JSON-RPC au-dessus de
+[LiteSVM](https://github.com/LiteSVM/litesvm) (la machine virtuelle Solana en mémoire). Les
+transactions sont réellement signées et exécutées, frais compris.
+
+```bash
+npm run e2e                 # scénario complet automatique : 2 SOL → 3 wallets, vérifie les soldes on-chain
+
+# ou à la main, avec l'interface web :
+npm run local-validator     # terminal 1 : http://localhost:8899
+# dans .env : SOLANA_RPC_URL=http://localhost:8899
+npm run dev                 # terminal 2
+```
+
+Sur le nœud local, alimentez les wallets avec `requestAirdrop` (par exemple via
+`solana airdrop 1 <adresse> --url http://localhost:8899`). Attention : Phantom diffuse la
+transaction sur le réseau choisi dans ses propres réglages, qui doit correspondre à `SOLANA_RPC_URL`.
+Sur le nœud local, le plus simple est d'envoyer le dépôt avec `solana transfer`, et de tester
+Phantom sur devnet.
+
 ## Structure
 
 | Fichier | Rôle |
